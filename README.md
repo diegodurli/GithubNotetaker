@@ -1,6 +1,9 @@
 Github Notetaker App built with React Native CoffeeScript Boilerplate
 ================
 
+Learning project, taught by Egghead.io, in which you can learn lots about React Native.
+This project uses Firebase API to persist notes created for a given user.
+
 # Getting started
 
 1. Clone repository and `cd` into project directory.
