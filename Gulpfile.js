@@ -13,21 +13,7 @@ var config = {
   files: {src: 'App/**/*.coffee', dist: 'App/Build'}
 }
 
-gulp.task('build', function() {
-  var options = {
-    continueOnError: false, // default = false, true means don't emit error event
-    pipeStdout: true
-  };
-
-  gulp.src(config.files.src)
-    .pipe(exec('cjsx-transform <%= file.path %>', options))
-    .pipe(lint(null, {max_line_length: {value: 90}}))
-    .pipe(lint.reporter(stylish))
-    .pipe(coffee({bare: true}).on('error', function(error) {}))
-    .pipe(gulp.dest(config.files.dist));
-});
-
-gulp.task('cjsx', ['build'], function() {
+gulp.task('cjsx', function() {
   var options = {
     continueOnError: false, // default = false, true means don't emit error event
   	pipeStdout: true
@@ -41,7 +27,6 @@ gulp.task('cjsx', ['build'], function() {
 
 gulp.task('watch', ['cjsx'], function() {
   gulp.watch(config.watchers.index, ['cjsx']);
-  // gulp.watch(config.watchers.files, ['build']);
   gulp.watch(config.watchers.files, function (file) {
     var options = {
       continueOnError: false, // default = false, true means don't emit error event
